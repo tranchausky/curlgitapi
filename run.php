@@ -3,7 +3,7 @@
 //https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token
 
 class curlGitApi{
-	public $GIT_AUTHEN = 'need change'; //(Personal access tokens) end 30day
+	public $GIT_AUTHEN = 'need change'; //(Personal access tokens) end 30day,or 60day or never
 	public $GIT_URL = 'https://api.github.com/';
 	public $GIT_VERSION = '2022-11-28';
 	public $GIT_ACCEPT = 'application/vnd.github+json';
