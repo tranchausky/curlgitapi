@@ -1,5 +1,5 @@
-# curlgitapi
-curl git api 
+# curlgithubapi
+curl github api 
 
 Document: 
 
