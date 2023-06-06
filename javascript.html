@@ -1,0 +1,44 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+<div>
+<p id="uname"></p>
+</div>
+
+<script>
+var github_url = 'https://api.github.com/';
+var github_api_version = '2022-11-28';
+var github_api_authen = 'Bearer keyheer';
+var github_api_accept = 'application/vnd.github+json';
+
+function callAjax(method,url,urlMore,data){
+	var urlSend = github_url +url+urlMore;
+    return $.ajax({
+		headers: {
+			'X-GitHub-Api-Version': github_api_version,
+			'Authorization': github_api_authen,
+			'Accept': github_api_accept
+		},
+        cache:      false,
+        url:        urlSend,
+        dataType:   "json",
+        type:       method,
+        data:       data,
+		error:function(data){
+			alert('this is error call ajax')
+			console.log(data)
+			console.log(data.status)
+		}
+	});
+}
+
+function viewHeader(){
+	//https://docs.github.com/en/rest/users/users?apiVersion=2022-11-28#get-the-authenticated-user
+	callAjax('GET','user','','').success(function(data){
+		console.log(data)
+		$('#uname').html(data.login)
+	});
+}
+viewHeader()
+
+
+</script>
