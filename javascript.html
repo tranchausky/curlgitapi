@@ -3,11 +3,14 @@
 <div>
 <p id="uname"></p>
 </div>
+<div>
+<ol id="listrepon"></ol>
+</div>
 
 <script>
 var github_url = 'https://api.github.com/';
 var github_api_version = '2022-11-28';
-var github_api_authen = 'Bearer keyheer';
+var github_api_authen = 'Bearer keyhere';
 var github_api_accept = 'application/vnd.github+json';
 
 function callAjax(method,url,urlMore,data){
@@ -38,7 +41,20 @@ function viewHeader(){
 		$('#uname').html(data.login)
 	});
 }
+function listRepos(){
+	callAjax('GET','user','/repos?per_page=100','').success(function(data){
+		console.log(data)
+		var listtext = '';
+		for (let i = 0; i < data.length; i++) {
+		  //text += data[i] + "<br>";
+		  var isPrivate = data[i].private ? '(private)':'(public)';
+		  listtext += '<li>'+data[i].name+' '+ isPrivate+ ' '+data[i].html_url+'</li>';
+		}
+		$('#listrepon').html(listtext)
+	});
+}
 viewHeader()
+listRepos()
 
 
 </script>
